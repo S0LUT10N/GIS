@@ -1,0 +1,72 @@
+﻿@model Kursach_MVC.Models.ViewModels.Pages.RestaurantVM
+
+@{
+    ViewBag.Title = "RestDetails";
+}
+
+<style>
+    .btn-black {
+        color: black;
+        border: 1px solid black;
+        padding: 5px 10px;
+    }
+
+    .t {
+        width: 70%;
+    }
+</style>
+
+<h2>Подробнее</h2>
+
+<div>
+   
+  
+    <dl class="dl-horizontal">
+        <dt>
+            Название
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Адрес
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            Номер телефона
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberPhone)
+        </dd>
+
+        <dt>
+            Тип ресторана
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idTag)
+        </dd>
+
+        <dt>
+            Время работы
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.workingHours)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "EditRestaurant", new { id = Model.Id }, new { @class = "btn btn-black" }) 
+  
+</p>

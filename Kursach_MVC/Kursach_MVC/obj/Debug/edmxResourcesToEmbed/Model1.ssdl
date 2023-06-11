@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище StoreDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Slug" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sorting" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\KURSACH_MVC_TON\KURSACH_MVC\KURSACH_MVC\APP_DATA\STOREDB.MDF.dbo.tblCoordinateRest" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="tblCoordinateRest">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdRest" />
+      <PropertyRef Name="latitude" />
+      <PropertyRef Name="longitude" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRest" Type="int" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblOrderDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="ProductName" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RestaurantName" Type="varchar" MaxLength="50" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="tblOrders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+    <Property Name="RestaurantId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblPages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Slug" Type="nvarchar" MaxLength="50" />
+    <Property Name="Body" Type="varchar(max)" />
+    <Property Name="Sorting" Type="int" />
+    <Property Name="HasSidebar" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblPayOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numbercart" Type="int" />
+    <Property Name="CVV" Type="int" />
+    <Property Name="DateTime" Type="varchar" MaxLength="50" />
+    <Property Name="OrderId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="OrderDetailsId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestarauntId" Type="int" />
+    <Property Name="RestarauntName" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Slug" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="ImageName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\KURSACH_MVC_TON\KURSACH_MVC\KURSACH_MVC\APP_DATA\STOREDB.MDF.dbo.tblRestaurant" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="tblRestaurant">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="idTag" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="latitude" Type="float" />
+    <Property Name="longitude" Type="float" />
+    <Property Name="Address" Type="varchar(max)" Nullable="false" />
+    <Property Name="NumberPhone" Type="varchar(max)" />
+    <Property Name="idTag" Type="varchar(max)" Nullable="false" />
+    <Property Name="WorkingHours" Type="varchar(max)" />
+    <Property Name="Sorting" Type="int" />
+  </EntityType>
+  <EntityType Name="tblRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblSidebar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="latitude" Type="float" />
+    <Property Name="longitude" Type="float" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="EmailAdress" Type="varchar" MaxLength="50" />
+    <Property Name="Username" Type="nchar" MaxLength="50" />
+    <Property Name="Password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="Хранилище StoreDbModelContainer">
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPages" EntityType="Self.tblPages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPayOrder" EntityType="Self.tblPayOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSidebar" EntityType="Self.tblSidebar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCoordinateRest" EntityType="Self.tblCoordinateRest" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblCoordinateRest].[Id] AS [Id], 
+    [tblCoordinateRest].[IdRest] AS [IdRest], 
+    [tblCoordinateRest].[latitude] AS [latitude], 
+    [tblCoordinateRest].[longitude] AS [longitude]
+    FROM [dbo].[tblCoordinateRest] AS [tblCoordinateRest]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tblRestaurant" EntityType="Self.tblRestaurant" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblRestaurant].[Id] AS [Id], 
+    [tblRestaurant].[Name] AS [Name], 
+    [tblRestaurant].[latitude] AS [latitude], 
+    [tblRestaurant].[longitude] AS [longitude], 
+    [tblRestaurant].[Address] AS [Address], 
+    [tblRestaurant].[NumberPhone] AS [NumberPhone], 
+    [tblRestaurant].[idTag] AS [idTag], 
+    [tblRestaurant].[WorkingHours] AS [WorkingHours], 
+    [tblRestaurant].[Sorting] AS [Sorting]
+    FROM [dbo].[tblRestaurant] AS [tblRestaurant]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

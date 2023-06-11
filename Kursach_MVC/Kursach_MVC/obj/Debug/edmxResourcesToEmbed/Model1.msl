@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище StoreDbModelContainer" CdmEntityContainer="StoreDbEntities">
+    <EntitySetMapping Name="tblCategories">
+      <EntityTypeMapping TypeName="StoreDbModel.tblCategories">
+        <MappingFragment StoreEntitySet="tblCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrderDetails">
+      <EntityTypeMapping TypeName="StoreDbModel.tblOrderDetails">
+        <MappingFragment StoreEntitySet="tblOrderDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="RestaurantName" ColumnName="RestaurantName" />
+          <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrders">
+      <EntityTypeMapping TypeName="StoreDbModel.tblOrders">
+        <MappingFragment StoreEntitySet="tblOrders">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPages">
+      <EntityTypeMapping TypeName="StoreDbModel.tblPages">
+        <MappingFragment StoreEntitySet="tblPages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+          <ScalarProperty Name="HasSidebar" ColumnName="HasSidebar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPayOrder">
+      <EntityTypeMapping TypeName="StoreDbModel.tblPayOrder">
+        <MappingFragment StoreEntitySet="tblPayOrder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numbercart" ColumnName="Numbercart" />
+          <ScalarProperty Name="CVV" ColumnName="CVV" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="StoreDbModel.tblProducts">
+        <MappingFragment StoreEntitySet="tblProducts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RestarauntId" ColumnName="RestarauntId" />
+          <ScalarProperty Name="RestarauntName" ColumnName="RestarauntName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="StoreDbModel.tblRoles">
+        <MappingFragment StoreEntitySet="tblRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSidebar">
+      <EntityTypeMapping TypeName="StoreDbModel.tblSidebar">
+        <MappingFragment StoreEntitySet="tblSidebar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserRoles">
+      <EntityTypeMapping TypeName="StoreDbModel.tblUserRoles">
+        <MappingFragment StoreEntitySet="tblUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="StoreDbModel.tblUsers">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="EmailAdress" ColumnName="EmailAdress" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCoordinateRest">
+      <EntityTypeMapping TypeName="StoreDbModel.tblCoordinateRest">
+        <MappingFragment StoreEntitySet="tblCoordinateRest">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdRest" ColumnName="IdRest" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRestaurant">
+      <EntityTypeMapping TypeName="StoreDbModel.tblRestaurant">
+        <MappingFragment StoreEntitySet="tblRestaurant">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+          <ScalarProperty Name="idTag" ColumnName="idTag" />
+          <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,40 @@
+﻿@model Kursach_MVC.Models.ViewModels.Pages.PageVM
+
+@{
+    ViewBag.Title = "Page Details";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+           Заголовок
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+           Боковая панель
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+           Описание
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Body)
+        </dd>
+
+       
+
+    </dl>
+</div>
+

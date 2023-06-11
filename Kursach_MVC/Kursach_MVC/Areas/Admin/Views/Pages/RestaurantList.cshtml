@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Kursach_MVC.Models.ViewModels.Pages.RestaurantVM>
+
+@{
+    ViewBag.Title = "RestaurantList";
+}
+
+<style>
+    .btn-black {
+        color: black;
+        border: 1px solid black;
+        padding: 5px 10px;
+    }
+    .t {
+        width:70%;
+    }
+
+</style>
+<h2>Список ресторанов</h2>
+
+
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Добавить", "AddRestautant", "", new { @class = "btn btn-black" })
+</p>
+<table class="table t">
+    <tr>
+        <th>
+            Название
+        </th>
+        <th>
+            Адрес
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "EditRestaurant", new { id = item.Id }, new { @class = "btn btn-black" }) |
+                @Html.ActionLink("Подробнее", "RestDetails", new { id = item.Id }, new { @class = "btn btn-black" }) |
+                @Html.ActionLink("Удалить", "DeleteRest", new { id = item.Id }, new { @class = "btn btn-black" }) |
+                @Html.ActionLink("Отчёт", "AddToReport", new { id = item.Id }, new { @class = "btn btn-black" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    <script>
+    $(function () {
+    $('body').on('click', '[id^="take-info-"]', function (event) {
+        event.preventDefault();
+
+        var idRest = $(this).attr('id').replace('take-info-', '');
+
+        $.ajax({
+            url: '@Url.Action("AddToReport", "Pages")',
+            type: 'POST',
+            data: { idRest: idRest },
+            success: function (result) {
+                // Обработка успешного ответа от сервера
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки
+            }
+        });
+    });
+});
+
+    </script>
+
+
+} 

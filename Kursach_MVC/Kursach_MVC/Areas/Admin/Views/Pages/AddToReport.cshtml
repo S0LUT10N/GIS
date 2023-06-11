@@ -1,0 +1,38 @@
+﻿@model Kursach_MVC.Models.ViewModels.Cart.ReportVM
+
+@{
+    ViewBag.Title = "AddToReport";
+}
+
+<h2>Отчёт</h2>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+           Средний чек
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvarageOrderPrice)
+        </dd>
+
+        <dt>
+            Самое популярное блюдо
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheMostPopularProudct)
+        </dd>
+
+        <dt>
+           Количество заказов
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HowManyOrders)
+        </dd>
+
+    </dl>
+</div>
+

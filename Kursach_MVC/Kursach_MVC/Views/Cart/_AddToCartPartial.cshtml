@@ -1,0 +1,8 @@
+﻿@model Kursach_MVC.Models.ViewModels.Cart.CartVM
+
+
+
+
+Корзина: <span class="badge">@Model.Quantity</span> @Model.Price 
+<br />
+@Html.ActionLink("Оплатить", "Index", new { @class = "btn btn-primary" })      

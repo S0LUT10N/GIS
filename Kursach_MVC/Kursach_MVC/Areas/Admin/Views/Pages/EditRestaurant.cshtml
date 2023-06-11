@@ -1,0 +1,78 @@
+﻿@model Kursach_MVC.Models.ViewModels.Pages.RestaurantVM
+
+@{
+    ViewBag.Title = "EditRestaurant";
+}
+<style>
+    .btn-black {
+        color: black;
+        border: 1px solid black;
+        padding: 5px 10px;
+    }
+
+    .t {
+        width: 70%;
+    }
+</style>
+
+<h2>Изменить страницу ресторана</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            Название
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Адрес
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Номер телефона
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numberPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numberPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Тип ресторана
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idTag, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idTag, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Время работы
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.workingHours, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.workingHours, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-black" />
+            </div>
+        </div>
+    </div>
+}
+

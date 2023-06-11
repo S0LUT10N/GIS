@@ -1,0 +1,14 @@
+﻿@model Kursach_MVC.Models.ViewModels.Cart.CartVM
+
+@if (Request.IsAuthenticated)
+{
+
+
+<div class="ajaxcart">
+    Корзина: <span class="badge">@Model.Quantity</span> <h7></h7>
+    @Model.Price Р
+    <br />
+    @Html.ActionLink("Оплатить", "Index", new { @class = "btn btn-primary" })
+</div>
+
+}

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Kursach_MVC.Models.ViewModels.Shop.ProductVM>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<style>
+    .brrr {
+        border: 1px solid black;
+    }
+
+    .table {
+        width: 70%;
+    }
+
+    tr {
+        border-bottom: 1px solid #cccccc99;
+    }
+
+    .color-white {
+        background-color: white;
+    }
+</style>
+
+<h2>Блюда</h2>
+
+<select id="SelectCategory" name="SelectCategory">
+    <option value="0">Всё</option>
+    @foreach (var item in ViewBag.Categories)
+    {
+        if (ViewBag.SelectedCat == item.Value)
+        {
+            <option selected="selected" value="@item.Value">@item.Text</option>
+        }
+        else
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    }
+</select>
+<br />
+<br />
+
+<p>
+    @Html.ActionLink("Добавить", "AddProduct", "", new { @class = "btn brrr btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Название
+        </th>
+
+
+        <th>
+            Цена
+        </th>
+
+        <th>
+            Картинка
+        </th>
+
+    </tr>
+
+    @foreach (var product in Model)
+    {
+        <tr class="color-white">
+            <td>
+                @product.Name
+            </td>
+
+
+
+            <td>
+                @product.Price
+            </td>
+
+            <td>
+                <a href="/admin/shop/EditProduct/@product.Id">
+                    @if (@product.ImageName == null)
+                    {
+                        <img src="/Content/img/no_image.png" />
+                    }
+                    else
+                    {
+                        <img src="/Images/Uploads/Products/@product.Id/Thumbs/@product.ImageName" />
+                    }
+                </a>
+            </td>
+
+            <td>
+                @Html.ActionLink("Изменить", "EditProduct", new { id = product.Id }, new { @class = "btn btn-default brrr" }) |
+                @Html.ActionLink("Удалить", "DeleteProduct", new { id = product.Id }, new { @class = "btn btn-default brrr" })
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+@section Scripts
+{
+    <script src="~/Content/ShopJS/ProductsScript.js"></script>
+}

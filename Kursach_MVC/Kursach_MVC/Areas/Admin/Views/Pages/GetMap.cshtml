@@ -1,0 +1,96 @@
+﻿@using Kursach_MVC.Models.Data;
+@using Kursach_MVC.Models.ViewModels.Pages;
+@model IEnumerable<Kursach_MVC.Models.ViewModels.Pages.RestaurantVM>
+
+@{
+    ViewBag.Title = "GetMap";
+
+    // получаем координаты из таблицы CoordinateRest
+
+    using (Db db = new Db())
+    {
+        // Получение координат из таблицы coordinateRest
+        var coordinates = db.Restaurants.ToList();
+
+   
+        var mapData = coordinates.Select(c => new
+        {
+            Latitude = c.latitude.ToString().Replace(',', '.'),
+            Longitude = c.longitude.ToString().Replace(',', '.'),
+            Name = c.Name,
+            Address = c.Address
+
+        }).ToList();
+
+
+        <h2>Карта</h2>
+
+        <div id="map" style="width: 100%; height: 500px;"></div>
+
+        @section Scripts {
+            <script src="https://api-maps.yandex.ru/2.1/?apikey=fbede055-0a60-4238-96b8-3b44b6dfdb38&lang=ru_RU" type="text/javascript"></script>
+            <script type="text/javascript">
+            ymaps.ready(init);
+
+            function init() {
+                var myMap = new ymaps.Map("map", {
+                    center: [55.796127, 49.106414],
+                    zoom: 10,
+                    controls: []
+                });
+
+
+                var mapPlacemarks = @Html.Raw(Json.Encode(mapData));
+
+                for (var i = 0; i < mapPlacemarks.length; i++) {
+                    var myPlacemark = new ymaps.Placemark([mapPlacemarks[i].Latitude, mapPlacemarks[i].Longitude], {
+                        balloonContentBody: "<h3>" + mapPlacemarks[i].Name + "</h3><p>" + mapPlacemarks[i].Address + "</p><button class='btn btn-success' onclick='alert(\"Button clicked!\");'>Make order here</button>"
+
+                      });
+                    myMap.geoObjects.add(myPlacemark);
+                    }
+                // Создание пользовательского макета управления зумом
+                var ZoomLayout = ymaps.templateLayoutFactory.createClass("<div>" +
+                    "<div id='zoom-in' class='zoom-button'><i class='fa fa-plus'></i></div>" +
+                    "<div id='zoom-out' class='zoom-button'><i class='fa fa-minus'></i></div>" +
+                    "</div>", {
+
+                    // Переопределяем методы макета, чтобы выполнять действия при клике
+                    build: function () {
+                        ZoomLayout.superclass.build.call(this);
+
+                        $('#zoom-in').bind('click', ymaps.util.bind(this.zoomIn, this));
+                        $('#zoom-out').bind('click', ymaps.util.bind(this.zoomOut, this));
+                    },
+
+                    clear: function () {
+                        $('#zoom-in').unbind('click');
+                        $('#zoom-out').unbind('click');
+
+                        ZoomLayout.superclass.clear.call(this);
+                    },
+
+                    zoomIn: function () {
+                        var map = this.getData().control.getMap();
+                        map.setZoom(map.getZoom() + 1, { checkZoomRange: true });
+                    },
+
+                    zoomOut: function () {
+                        var map = this.getData().control.getMap();
+                        map.setZoom(map.getZoom() - 1, { checkZoomRange: true });
+                    }
+                });
+
+                // Добавление пользовательского макета на карту
+                var zoomControl = new ymaps.control.ZoomControl({ options: { layout: ZoomLayout } });
+                myMap.controls.add(zoomControl);
+
+                let placemark = new ymaps.Placemark([55.7607421875, 49.180992126464844], {}, {
+
+                });
+
+            }
+            </script>
+        }
+    }
+}

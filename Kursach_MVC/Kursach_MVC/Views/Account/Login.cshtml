@@ -1,0 +1,79 @@
+﻿@model Kursach_MVC.Models.ViewModels.Account.LoginUserVM
+
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        background-image: url('../../content/img/phone.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .form-box {
+        position: relative;
+        border: 2px solid black;
+        padding: 20px;
+        width: 325px;
+    }
+</style>
+
+
+
+
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+<h2>Авторизация</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-box text-white" }))
+{
+    
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h8 class = "control-label col-md-2 text-dark">Имя пользователя</h8>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h8 class="control-label col-md-2 text-dark">Пароль</h8>
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           
+            <div class="col-md-10">
+            
+                <div class="checkbox">
+                    <h8 class="control-label col-md-2 text-dark">Запомнить</h8>
+                    @Html.EditorFor(model => model.RememberMe)
+                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+           
+        </div>
+
+        <hr  style="color: black"/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Войти" class="btn btn-default" style="border: 1px solid black;" />
+                &nbsp; <a class="text-dark" href="/account/create-account">Создать аккаунт</a>
+            </div>
+        </div>
+    </div>
+}   

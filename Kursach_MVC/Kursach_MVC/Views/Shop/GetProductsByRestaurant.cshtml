@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Kursach_MVC.Models.ViewModels.Shop.ProductVM>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<style>
+    .table {
+        width: 50%;
+    }
+</style>
+
+
+<h2>Блюда</h2>
+
+
+
+
+<body>
+    <div class="container body-content" style="margin-top: 30px;">
+        <div class="row">
+
+
+            <div class="col-sm-12 col-md-3 list-group">
+                @Html.Action("CategoryMenuPartial", "Shop")
+            </div>
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Название блюда
+                    </th>
+
+
+                    <th>
+                        Цена
+                    </th>
+
+                    <th>
+                        Картинка
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            <a href="/shop/product-details/@item.Slug">
+                                <img src="/Images/Uploads/Products/@item.Id/Thumbs/@item.ImageName" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/shop/product-details/@item.Slug" style="border: 1px solid black;" class="btn btn-default">Подробнее</a>
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+
+
+            <!--*****************-->
+
+            @if (ViewBag.Sidebar == "Yes")
+            {
+                <div class="col">
+                    @RenderBody()
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    @Html.Action("SidebarPartial", "Pages")
+                </div>
+            }
+
+
+        </div>
+    </div>
+</body>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoreDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sorting" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblOrderDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RestaurantName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblOrders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <Property Name="RestaurantId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblPages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Sorting" Type="Int32" />
+    <Property Name="HasSidebar" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblPayOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Numbercart" Type="Int32" />
+    <Property Name="CVV" Type="Int32" />
+    <Property Name="DateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="OrderDetailsId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestarauntId" Type="Int32" />
+    <Property Name="RestarauntName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblSidebar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="latitude" Type="Double" />
+    <Property Name="longitude" Type="Double" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblCoordinateRest">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdRest" />
+      <PropertyRef Name="latitude" />
+      <PropertyRef Name="longitude" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRest" Type="Int32" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRestaurant">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="idTag" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="latitude" Type="Double" />
+    <Property Name="longitude" Type="Double" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumberPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkingHours" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Sorting" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="StoreDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetails" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrders" />
+    <EntitySet Name="tblPages" EntityType="Self.tblPages" />
+    <EntitySet Name="tblPayOrder" EntityType="Self.tblPayOrder" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRoles" />
+    <EntitySet Name="tblSidebar" EntityType="Self.tblSidebar" />
+    <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRoles" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" />
+    <EntitySet Name="tblCoordinateRest" EntityType="Self.tblCoordinateRest" />
+    <EntitySet Name="tblRestaurant" EntityType="Self.tblRestaurant" />
+  </EntityContainer>
+</Schema>
